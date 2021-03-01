@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 
 const About = () => {
     return (
-        <Button variant="contained" color="secondary">
+        <Button variant="contained" color="primary">
         Hola Mundo!
         </Button>
     );
