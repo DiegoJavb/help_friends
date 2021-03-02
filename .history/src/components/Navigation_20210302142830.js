@@ -7,7 +7,7 @@ const Navigation = () => {
         <div>
             <ul>
                 <li>
-                    <Link href='/categories'>Artículos</Link>
+                    <Link href='/categories'>Categorias</Link>
                 </li>
                 <li>
                     <Link href='/about'>About</Link>

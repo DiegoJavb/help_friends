@@ -10,7 +10,7 @@ const Category = ({category}) => {
                     return (
                         <ul>
                             <li key={category.id}>
-                                {category.name}<Button><Link href='/categories/subCategory'>Ver más</Link></Button>
+                                {category.name}<Button><Link href='/[categories]/subCategory'>Ver más</Link></Button>
                             </li>
                         </ul>
                     )
