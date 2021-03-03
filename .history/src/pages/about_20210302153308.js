@@ -6,7 +6,7 @@ import { Link } from '@material-ui/core';
 const About = () => {
     return (
         <Button variant="contained" color="secondary">
-            <Link color='primary' href='/'>Hola Mundo!</Link>
+            <Link href='/'>Hola Mundo!</Link>
         </Button>
     );
 };

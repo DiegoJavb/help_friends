@@ -1,5 +1,5 @@
-import { FormControlLabel } from "@material-ui/core";
-import Link from 'next/link'
+import { FormControlLabel, Link } from "@material-ui/core";
+
 import React from 'react';
 
 const Navigation = () => {

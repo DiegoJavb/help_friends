@@ -1,7 +1,6 @@
 import React from 'react';
 import {Button, Grid, InputAdornment, TextField} from '@material-ui/core'
 import {AccountCircle, LockRounded} from '@material-ui/icons'
-import Link from 'next/link'
 
 const Login = () => {
     return (
@@ -40,7 +39,7 @@ const Login = () => {
                         <div style={{height:30}}/>
                         <div style={{display:'flex',justifyContent:'space-between'}}>
                             <Button color='primary' variant='contained'>Iniciar Sesion</Button>
-                            <Button color='primary' variant='contained'><Link href='/'>Cancelar</Link></Button>
+                            <Button color='primary' variant='contained'>Cancelar</Button>
                         </div>
                         <p style={{marginTop:30, marginBottom:30}}>No tienes cuenta registrate</p>
 

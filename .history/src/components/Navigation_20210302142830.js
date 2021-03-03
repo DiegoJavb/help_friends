@@ -1,5 +1,5 @@
-import { FormControlLabel } from "@material-ui/core";
-import Link from 'next/link'
+import { FormControlLabel, Link } from "@material-ui/core";
+
 import React from 'react';
 
 const Navigation = () => {
@@ -7,7 +7,7 @@ const Navigation = () => {
         <div>
             <ul>
                 <li>
-                    <Link href='/categories'>Artículos</Link>
+                    <Link href='/categories'>Categorias</Link>
                 </li>
                 <li>
                     <Link href='/about'>About</Link>

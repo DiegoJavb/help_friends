@@ -1,19 +1,21 @@
 import Link from 'next/link'
 import React from 'react';
 
-const Category = ({categories}) => {
-    console.log('categorias', categories );
-    if(!categories){
-        return 'No se pudo obtener una categoría'
+const Articles = ({articles}) => {
+    console.log('articulos',  articles);
+
+    if(!articles){
+        return 'No se pudo obtener el artículo'
     }
-    return (
+
+    return (    
         <div>
             {
-                categories.map((category)=>{
+                articles.map(article=>{
                     return (
                         <ul>
-                            <li key={category.id+''}>
-                                <Link href='/categories/subCategories'>{category.name}</Link>
+                            <li key={article.id+''}>
+                                <Link href='/'>{article.name}</Link>
                             </li>
                         </ul>
                     )
@@ -23,12 +25,11 @@ const Category = ({categories}) => {
     );
 };
 
-export default Category;
-
+export default Articles;
 export async function getStaticProps() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/categories`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/articles`)
     const data = await res.json();
-    console.log('data',data);
+    console.log('articles', data.data);
     if(!data){
         return{
             notFount:true,
@@ -37,8 +38,7 @@ export async function getStaticProps() {
 
     return{
         props:{
-            categories:data
+            articles:data.data
         }, // will be passed to the component as props
     }
-
 }
