@@ -1,3 +1,4 @@
+import { Button} from '@material-ui/core';
 import Link from 'next/link'
 import React from 'react';
 
@@ -12,8 +13,8 @@ const Category = ({categories}) => {
                 categories.map((category)=>{
                     return (
                         <ul>
-                            <li key={category.id+''}>
-                                <Link href='/categories/subCategories'>{category.name}</Link>
+                            <li key={category.id}>
+                                {category.name}<Button><Link href='/categories/subCategory'>Ver más</Link></Button>
                             </li>
                         </ul>
                     )
@@ -42,3 +43,19 @@ export async function getStaticProps() {
     }
 
 }
+
+// export async function getStaticPaths() {
+//     const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/categories`)
+//     const data = await res.json();
+//     console.log('data', data);
+
+//     const categories = data
+//     const paths = categories.map((category)=>{
+//         return {params:{categoryId:category.id}}
+//     });
+    
+//     return {
+//         paths,
+//         fallback: false // See the "fallback" section below
+//     };
+// }

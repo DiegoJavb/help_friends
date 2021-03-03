@@ -1,3 +1,4 @@
+import { Button} from '@material-ui/core';
 import Link from 'next/link'
 import React from 'react';
 
@@ -12,8 +13,8 @@ const Category = ({categories}) => {
                 categories.map((category)=>{
                     return (
                         <ul>
-                            <li key={category.id+''}>
-                                <Link href='/categories/subCategories'>{category.name}</Link>
+                            <li key={category.id}>
+                                <Link href='/categories/subCategories'>{category.id}</Link>
                             </li>
                         </ul>
                     )

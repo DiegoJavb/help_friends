@@ -4,6 +4,11 @@ import {useRouter} from 'next/router'
 
 const subCategory = ({subCategories}) => {
     console.log('subcatecorias', subCategories);
+
+    if(!subCategories){
+        return 'No se pudo obtener una subcategoría'
+    }
+
     return (
         <div>
             {

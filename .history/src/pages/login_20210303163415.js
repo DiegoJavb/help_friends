@@ -1,7 +1,5 @@
 import React from 'react';
-import {Button, Grid, InputAdornment, TextField} from '@material-ui/core'
-import {AccountCircle, LockRounded} from '@material-ui/icons'
-import Link from 'next/link'
+import {Button, Grid, TextField} from '@material-ui/core'
 
 const Login = () => {
     return (
@@ -21,31 +19,20 @@ const Login = () => {
                     style={{padding:10}}
                     >
                     <div/>
-                    <div style={{display:'flex', flexDirection:'column', maxWidth:300, minWidth:400}}>
-                        {/* <Grid container justify='center'>
+                    <div style={{display:'flex', flexDirection:'column', maxWidth:400, minWidth:300}}>
+                        <Grid container justify='center'>
                             <img 
                                 src='https://logos-world.net/wp-content/uploads/2021/02/Zoom-Logo.png' 
                                 width={200} 
                                 alt='logo'
                             />    
-                        </Grid> */}
-                        <TextField 
-                            label='Usuario' 
-                            margin='normal'    
-                            />
-                        <TextField 
-                            label='Contraseña' 
-                            margin='normal' 
-                            />
+                        </Grid>
+                        <TextField label='Usuario' margin='normal'/>
+                        <TextField label='Contraseña' margin='normal'/>
                         <div style={{height:30}}/>
                         <div style={{display:'flex',justifyContent:'space-between'}}>
                             <Button color='primary' variant='contained'>Iniciar Sesion</Button>
-                            <Button color='primary' variant='contained'><Link href='/'>Cancelar</Link></Button>
-                        </div>
-                        <p style={{marginTop:30, marginBottom:30}}>No tienes cuenta registrate</p>
-
-                        <div style={{display:'flex', justifyContent:'center'}}>
-                            <Button color='primary' variant='contained'>Registro</Button>     
+                            <Button color='primary' variant='contained'>Cancelar</Button>
                         </div>
                         
                     </div>

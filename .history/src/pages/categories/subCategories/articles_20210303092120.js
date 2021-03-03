@@ -1,3 +1,4 @@
+import { Button } from '@material-ui/core';
 import Link from 'next/link'
 import React from 'react';
 
@@ -14,7 +15,7 @@ const Articles = ({articles}) => {
                 articles.map(article=>{
                     return (
                         <ul>
-                            <li key={article.id+''}>
+                            <li key={article.id}>
                                 <Link href='/'>{article.name}</Link>
                             </li>
                         </ul>
