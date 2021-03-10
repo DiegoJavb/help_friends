@@ -1,23 +1,90 @@
 import React from 'react';
 import Link from "next/link";
+import {
+    Card,
+    CardActionArea,
+    CardContent,
+    CardMedia,
+    Typography,
+    Grid
+} from "@material-ui/core/";
+import {makeStyles} from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+    root: {
+        maxWidth: 300,
+        marginBottom: 40,
+    },
+    media: {
+        height: 350
+    },
+    title: {
+        overflow: "hidden",
+        display: "-webkit-box",
+        "-webkit-line-clamp": 1,
+        "-webkit-box-orient": "vertical",
+    },
+    body: {
+        overflow: "hidden",
+        display: "-webkit-box",
+        "-webkit-line-clamp": 3,
+        "-webkit-box-orient": "vertical",
+    },
+});
 
 const Articles = ({subcategory}) => {
     console.log('subcategorias', subcategory)
+    const classes = useStyles();
+    if (!subcategory) {
+        return 'No se pudo obtener una subcategoría'
+    }
     return (
-        <div>
-            <ul>
-                {
-                    subcategory.map(subcategory => {
-                        return (
-                            <li key={subcategory.id}>
-                                <Link href={`/subcategories/${subcategory.id}`}>{subcategory.name}</Link>
-                            </li>
-                        )
-                    })
-                }
-            </ul>
-        </div>
-    );
+        <Grid container direction='row' justify='space-evenly'>
+            {
+                subcategory.map((subcategory) => (
+                        <Card className={classes.root} key={subcategory.id}>
+                            <CardActionArea>
+                                <CardMedia
+                                    className={classes.media}
+                                    component="img"
+                                    src={`https://picsum.photos/300/350?sig=${subcategory.id}`}
+                                    title={classes.title}
+                                />
+                                <CardContent>
+                                    <div style={{textAlign: 'center'}}>
+                                        <Typography
+                                            gutterBottom
+                                            variant="h5"
+                                            component="h2"
+                                            className={classes.title}
+                                        >
+                                            <Link href={`/subcategories/${subcategory.id}`}>{subcategory.name}</Link>
+                                        </Typography>
+                                    </div>
+                                </CardContent>
+                            </CardActionArea>
+                        </Card>
+                    )
+                )
+            }
+        </Grid>
+    )
+
+    // return (
+    //     <div>
+    //         <ul>
+    //             {
+    //                 subcategory.map(subcategory => {
+    //                     return (
+    //                         <li key={subcategory.id}>
+    //                             <Link href={`/subcategories/${subcategory.id}`}>{subcategory.name}</Link>
+    //                         </li>
+    //                     )
+    //                 })
+    //             }
+    //         </ul>
+    //     </div>
+    // );
 };
 
 export default Articles;
