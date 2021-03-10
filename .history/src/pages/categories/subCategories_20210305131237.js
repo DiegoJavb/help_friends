@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react';
 
-const subCategory = ({subCategories}) => {
+const subCategory = ({subCategories},...id) => {
     console.log('subcatecorias', subCategories);
 
     if(!subCategories){
@@ -10,17 +10,18 @@ const subCategory = ({subCategories}) => {
 
     return (
         <div>
+            <ul>
             {
                 subCategories.map(subCategory=>{
                     return (
-                        <ul>
-                            <li key={subCategory.id+''}>
-                                <Link href='/categories/subCategories/articles'>{subCategory.name}</Link>
-                            </li>
-                        </ul>
+                        <li key={subCategory.id+''}>
+                            <Link href='/categories/subCategories/articles'>{subCategory.name}</Link>
+                        </li> 
                     )
                 })
             }
+            </ul>
+            
         </div>
     );
 };
