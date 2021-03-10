@@ -1,14 +1,18 @@
 import React from 'react';
-import {useRouter} from 'next/router'
+import Link from "next/link";
 
-const Subcategories = ({subcategory}) => {
-    console.log('subcategory', subcategory)
+const Articles = ({subcategory}) => {
+    console.log('subcategorias', subcategory)
     return (
         <div>
             <ul>
                 {
-                    subcategory.map(subcategory=>{
-                        return <li key={subcategory.id}>{subcategory.name}</li>
+                    subcategory.map(subcategory => {
+                        return (
+                            <li key={subcategory.id}>
+                                <Link href={`/subcategories/${subcategory.id}`}>{subcategory.name}</Link>
+                            </li>
+                        )
                     })
                 }
             </ul>
@@ -16,25 +20,23 @@ const Subcategories = ({subcategory}) => {
     );
 };
 
-export default Subcategories;
+export default Articles;
 
 
 export async function getStaticProps(context) {
 
     const categoryId = parseInt(context.params.subcategories)
-    console.log('id de la categoria', typeof categoryId)
+    console.log('id de la categoria', categoryId)
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/subcategories`)
     const data = await response.json()
-    console.log('subcategorias', data)
+    // console.log('data', data.data)
     if (!data) {
         return {
             notFound: true,
         }
     }
 
-    const exact = data.filter(subcategory => subcategory.categories_id === categoryId)
-
-    console.log('exact', exact)
+    const exact = data.data.filter(subcategory => subcategory.category_id === categoryId)
 
     return {
         props: {
@@ -47,8 +49,7 @@ export async function getStaticPaths() {
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/subcategories`)
     const data = await response.json()
-
-    const paths = data.map(subcategory => {
+    const paths = data.data.map(subcategory => {
         return {params: {subcategories: '' + subcategory.categories_id}}
     })
 
