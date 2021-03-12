@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Link from "next/link";
 import {
     Card,
@@ -11,6 +11,7 @@ import {
     Grid
 } from "@material-ui/core/";
 import {makeStyles} from "@material-ui/core/styles";
+import useSWR from "swr";
 
 const useStyles = makeStyles({
     root: {
@@ -41,9 +42,20 @@ const useStyles = makeStyles({
 const Articles = ({articles}) => {
     console.log('articles', articles)
     const classes = useStyles();
+    const {comments, setComments} = useState([]);
     if (!articles) {
         return 'No se pudo obtener un artículo'
     }
+
+    // useEffect(()=>{
+    //     const getData = async ()=>{
+    //         const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/articles`);
+    //         const data = await response.json();
+    //         console.log('data', data)
+    //         setComments[data];
+    //     }
+    //     getData();
+    // },[])
     return (
         <Grid container direction='row' justify='space-evenly'>
             {
