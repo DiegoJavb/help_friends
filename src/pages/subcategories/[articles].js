@@ -8,22 +8,23 @@ import {
     CardMedia,
     Typography,
     Button,
-    Grid
+    Grid,
+    Modal,
+    TextField
 } from "@material-ui/core/";
 import {makeStyles} from "@material-ui/core/styles";
-import useSWR from "swr";
+import Comments from "@/components/Comments";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 250,
         marginBottom: 40,
-
     },
     media: {
         height: 200
     },
-    center:{
-        justifyContent:'center'
+    center: {
+        justifyContent: 'center'
     },
     title: {
         overflow: "hidden",
@@ -37,74 +38,116 @@ const useStyles = makeStyles({
         "-webkit-line-clamp": 2,
         "-webkit-box-orient": "vertical",
     },
-});
+    modal: {
+        position: 'absolute',
+        width: 500,
+        height: 600,
+        backgroundColor: 'white',
+        border: '0px solid #000',
+        boxShadow: theme.shadows[5],
+        padding: "16px 32px 24px",
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%,-50%)'
+    },
+    textfields: {
+        width: '100%'
+    }
+}));
 
 const Articles = ({articles}) => {
     console.log('articles', articles)
-    const classes = useStyles();
-    const {comments, setComments} = useState([]);
+
     if (!articles) {
         return 'No se pudo obtener un artículo'
     }
+    const classes = useStyles();
+    const [modal, setModal] = useState(false)
+    const [articleId, setArticleId] = useState(null)
 
-    // useEffect(()=>{
-    //     const getData = async ()=>{
-    //         const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/articles`);
-    //         const data = await response.json();
-    //         console.log('data', data)
-    //         setComments[data];
-    //     }
-    //     getData();
-    // },[])
-    return (
-        <Grid container direction='row' justify='space-evenly'>
-            {
-                articles.map(article => (
-                        <Card className={classes.root} key={article.id}>
-                            <CardActionArea>
-                                <CardMedia
-                                    className={classes.media}
-                                    component="img"
-                                    src={`https://picsum.photos/300/350?sig=${article.id}`}
-                                    title={classes.title}
-                                />
-                                <CardContent>
-                                    <div style={{textAlign: 'center'}}>
+    // const handleCloseModal = () => {
+    //     setModal(false)
+    // }
+    // const handleOpenModal = (id) => {
+    //     console.log('id del articulo', id)
+    //     setModal(true)
+    //     setArticleId(id)
+    // }
+
+    // const body = (
+    //     <div className={classes.modal}>
+    //         <div align='center'>
+    //             <h2>Articulo</h2>
+    //         </div>
+    //         <TextField label="Nombre" className={classes.textfields}/>
+    //         <br/>
+    //         {
+    //             <Comments articleId={articleId}/>
+    //         }
+    //         <Button onClick={() => handleCloseModal()}>Cancelar</Button>
+    //     </div>
+    // )
+
+    return (<>
+            {/*{*/}
+            {/*    <Modal*/}
+            {/*        open={modal}*/}
+            {/*        onClose={() => handleCloseModal()}*/}
+            {/*    >*/}
+            {/*        {body}*/}
+
+            {/*    </Modal>*/}
+            {/*}*/}
+            <Grid container direction='row' justify='space-evenly'>
+                {
+                    articles.map(article => (
+                            <Card className={classes.root} key={article.id}>
+                                <CardActionArea>
+                                    <CardMedia
+                                        className={classes.media}
+                                        component="img"
+                                        src={`https://picsum.photos/300/350?sig=${article.id}`}
+                                        title={classes.title}
+                                    />
+                                    <CardContent>
+                                        <div style={{textAlign: 'center'}}>
+                                            <Typography
+                                                gutterBottom
+                                                variant="h5"
+                                                component="h2"
+                                                className={classes.title}
+                                            >
+                                                {article.name}
+                                            </Typography>
+                                        </div>
                                         <Typography
-                                            gutterBottom
-                                            variant="h5"
-                                            component="h2"
-                                            className={classes.title}
+                                            variant="body2"
+                                            color="textSecondary"
+                                            component="p"
+                                            className={classes.body}
                                         >
-                                            {article.name}
+                                            {article.description}
                                         </Typography>
-                                    </div>
-                                    <Typography
-                                        variant="body2"
-                                        color="textSecondary"
-                                        component="p"
-                                        className={classes.body}
-                                    >
-                                        {article.description}
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
+                                    </CardContent>
+                                </CardActionArea>
 
-                            <CardActions className={classes.center}>
-                                {/*<Link href={`/articles/${article.id}`}>*/}
-                                <Link href={'/'}>
-                                    <Button size="small" color="primary">
+                                <CardActions className={classes.center}>
+                                    <Button
+                                        size="small"
+                                        color="primary"
+                                        // onClick={() => handleOpenModal(article.id)}
+                                        >
                                         Obtener
                                     </Button>
-                                </Link>
-                            </CardActions>
+                                </CardActions>
 
 
-                        </Card>
+                            </Card>
+                        )
                     )
-                )
-            }
-        </Grid>
+                }
+            </Grid>
+        </>
     )
     // return (
     //     <>
