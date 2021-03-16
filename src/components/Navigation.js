@@ -28,9 +28,6 @@ const Navigation = () => {
                             <Button>
                                 <Link href='/login'>Inicio Sesion</Link>
                             </Button>
-                            <Button>
-                                <Link href='/register'>Registrate</Link>
-                            </Button>
                         </>
 
                     )
