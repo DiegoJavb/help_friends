@@ -40,8 +40,8 @@ const useStyles = makeStyles((theme) => ({
     },
     modal: {
         position: 'absolute',
-        width: 500,
-        height: 600,
+        width: 1000,
+        height: 700,
         backgroundColor: 'white',
         border: '0px solid #000',
         boxShadow: theme.shadows[5],
@@ -65,39 +65,38 @@ const Articles = ({articles}) => {
     const [modal, setModal] = useState(false)
     const [articleId, setArticleId] = useState(null)
 
-    // const handleCloseModal = () => {
-    //     setModal(false)
-    // }
-    // const handleOpenModal = (id) => {
-    //     console.log('id del articulo', id)
-    //     setModal(true)
-    //     setArticleId(id)
-    // }
+    const handleCloseModal = () => {
+        setModal(false)
+    }
+    const handleOpenModal = () => {
+        // console.log('id del articulo', id)
+        setModal(true)
+        //setArticleId(id)
+    }
 
-    // const body = (
-    //     <div className={classes.modal}>
-    //         <div align='center'>
-    //             <h2>Articulo</h2>
-    //         </div>
-    //         <TextField label="Nombre" className={classes.textfields}/>
-    //         <br/>
-    //         {
-    //             <Comments articleId={articleId}/>
-    //         }
-    //         <Button onClick={() => handleCloseModal()}>Cancelar</Button>
-    //     </div>
-    // )
+    const body = (
+        <div className={classes.modal}>
+            <div align='center'>
+                <h2>Articulo</h2>
+            </div>
+            <TextField label="Nombre" className={classes.textfields}/>
+            <br/>
+            {/*{*/}
+            {/*    <Comments articleId={articleId}/>*/}
+            {/*}*/}
+            <Button onClick={() => handleCloseModal()}>Cancelar</Button>
+        </div>
+    )
 
     return (<>
-            {/*{*/}
-            {/*    <Modal*/}
-            {/*        open={modal}*/}
-            {/*        onClose={() => handleCloseModal()}*/}
-            {/*    >*/}
-            {/*        {body}*/}
-
-            {/*    </Modal>*/}
-            {/*}*/}
+            {
+                <Modal
+                    open={modal}
+                    onClose={() => handleCloseModal()}
+                >
+                    {body}
+                </Modal>
+            }
             <Grid container direction='row' justify='space-evenly'>
                 {
                     articles.map(article => (
@@ -135,7 +134,7 @@ const Articles = ({articles}) => {
                                     <Button
                                         size="small"
                                         color="primary"
-                                        // onClick={() => handleOpenModal(article.id)}
+                                        onClick={() => handleOpenModal()}
                                         >
                                         Obtener
                                     </Button>

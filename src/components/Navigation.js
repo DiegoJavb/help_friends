@@ -24,9 +24,15 @@ const Navigation = () => {
                         'verificando sesion...'
                     )
                     : user === false ? (
-                        <Button>
-                            <Link href='/login'>Login</Link>
-                        </Button>
+                        <>
+                            <Button>
+                                <Link href='/login'>Inicio Sesion</Link>
+                            </Button>
+                            <Button>
+                                <Link href='/register'>Registrate</Link>
+                            </Button>
+                        </>
+
                     )
                     : (
                         <>
@@ -43,11 +49,8 @@ const Navigation = () => {
                     <Link href='/about'>About</Link>
                 </li>
                 {/*<li>*/}
-                {/*    <Link href='/login'>Inicio sesion</Link>*/}
+                {/*    <Link href='/register'>Registro</Link>*/}
                 {/*</li>*/}
-                <li>
-                    <Link href='/register'>Registro</Link>
-                </li>
             </ul>
         </div>
     );
