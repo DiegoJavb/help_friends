@@ -3,14 +3,17 @@ import {Button, Grid, InputAdornment, TextField} from '@material-ui/core'
 import {AccountCircle, LockRounded} from '@material-ui/icons'
 import Link from 'next/link'
 
-import {Auth} from "../lib/auth";
+import {useAuth} from "../lib/auth";
 import {Article} from "../lib/articles";
+import withoutAuth from "@/hocs/withoutAuth";
 
 const Login = () => {
 
-    const handleLogin = async () => {
+
+    const {login, user} = useAuth();
+    const handleLogin = async (data) => {
         try {
-            const userData = await Auth.login({
+            const userData = await login({
                 email: 'admin@prueba.com',
                 password: '123123'
             })
@@ -62,26 +65,26 @@ const Login = () => {
     };
 
 
-
-
     return (
         <div>
-            <Grid container style={{minHeight:'100vh'}}>
+            <Grid container style={{minHeight: '100vh'}}>
                 <Grid item xs={12} sm={6}>
                     <img
                         src='https://picsum.photos/300/350'
-                        style={{width:'100%', height:'100%', objectFit:'cover',
-                        alt:'brand'}}
+                        style={{
+                            width: '100%', height: '100%', objectFit: 'cover',
+                            alt: 'brand'
+                        }}
                     />
                 </Grid>
                 <Grid container item xs={12} sm={6}
-                    alignItems='center'
-                    direction='column'
-                    justify='space-between'
-                    style={{padding:10}}
-                    >
+                      alignItems='center'
+                      direction='column'
+                      justify='space-between'
+                      style={{padding: 10}}
+                >
                     <div/>
-                    <div style={{display:'flex', flexDirection:'column', maxWidth:300, minWidth:400}}>
+                    <div style={{display: 'flex', flexDirection: 'column', maxWidth: 300, minWidth: 400}}>
                         {/* <Grid container justify='center'>
                             <img
                                 src='https://logos-world.net/wp-content/uploads/2021/02/Zoom-Logo.png'
@@ -92,23 +95,24 @@ const Login = () => {
                         <TextField
                             label='Usuario'
                             margin='normal'
-                            />
+                        />
                         <TextField
                             label='Contraseña'
                             margin='normal'
-                            />
-                        <div style={{height:30}}/>
-                        <div style={{display:'flex',justifyContent:'space-between'}}>
+                        />
+                        <div style={{height: 30}}/>
+                        <div style={{display: 'flex', justifyContent: 'space-between'}}>
                             <Button onClick={handleLogin} color='primary' variant='contained'>Iniciar Sesion</Button>
                             <Button color='primary' variant='contained'><Link href='/'>Cancelar</Link></Button>
                         </div>
-                        <p style={{marginTop:30, marginBottom:30}}>No tienes cuenta registrate</p>
+                        <p style={{marginTop: 30, marginBottom: 30}}>No tienes cuenta registrate</p>
 
-                        <div style={{display:'flex', justifyContent:'center'}}>
+                        <div style={{display: 'flex', justifyContent: 'center'}}>
                             <Button color='primary' variant='contained'>Registro</Button>
                         </div>
-                        <div style={{display:'flex', justifyContent:'center'}}>
-                            <Button onClick={handleViewComments} color='primary' variant='contained'>ver articulo</Button>
+                        <div style={{display: 'flex', justifyContent: 'center'}}>
+                            <Button onClick={handleViewComments} color='primary' variant='contained'>ver
+                                articulo</Button>
                         </div>
 
                     </div>
@@ -120,4 +124,4 @@ const Login = () => {
     );
 };
 
-export default Login
+export default withoutAuth(Login);

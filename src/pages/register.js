@@ -2,6 +2,7 @@ import React from 'react';
 import {Button, Grid, InputAdornment, TextField} from '@material-ui/core'
 import {AccountCircle, LockRounded} from '@material-ui/icons'
 import Link from 'next/link'
+import withoutAuth from "@/hocs/withoutAuth";
 
 const Register = () => {
     return (
@@ -83,4 +84,4 @@ const Register = () => {
     );
 };
 
-export default Register
+export default withoutAuth(Register);

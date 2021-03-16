@@ -1,4 +1,4 @@
-import {api} from "./api";
+import api from "./api";
 
 async function getById(id){
     return await api.get(`/articles/${id}`)
